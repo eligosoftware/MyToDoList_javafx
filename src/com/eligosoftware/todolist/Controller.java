@@ -4,6 +4,7 @@ import com.eligosoftware.todolist.dataModel.TodoItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -13,7 +14,10 @@ import java.util.List;
 public class Controller {
     private List<TodoItem> todoItems;
     @FXML
-    private ListView todoListView;
+    private ListView<TodoItem> todoListView;
+
+    @FXML
+    private TextArea detailsTextView;
 
     public void initialize(){
        TodoItem item1=new TodoItem("Mail Birthday Card",
@@ -36,5 +40,20 @@ public class Controller {
 
         todoListView.getItems().setAll(todoItems);
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
+
+    @FXML
+    public void handleClickListView(){
+        TodoItem item=todoListView.getSelectionModel().getSelectedItem();
+       // System.out.println("The selected item is "+item);
+        StringBuilder sb=new StringBuilder(item.getDetails());
+        sb.append("\n\n\n\n");
+        sb.append("Due: ");
+        sb.append(item.getDeadline().toString());
+
+        detailsTextView.setText(sb.toString());
+
+
+
     }
 }

@@ -4,13 +4,11 @@
 <BorderPane fx:controller="com.eligosoftware.todolist.Controller"
             xmlns:fx="http://javafx.com/fxml">
     <left>
-        <ListView fx:id="todoListView">
+        <ListView fx:id="todoListView" onMouseClicked="#handleClickListView">
 
         </ListView>
     </left>
     <center>
-        <TextArea fx:id="">
-
-        </TextArea>
+        <TextArea fx:id="detailsTextView"/>
     </center>
 </BorderPane>
