@@ -1,6 +1,7 @@
 package com.eligosoftware.todolist;
 
 
+import com.eligosoftware.todolist.dataModel.ToDoData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,5 +20,26 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void stop() throws Exception {
+        try{
+            ToDoData.getInstance().storeTodoItems();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public void init() throws Exception {
+        try{
+            ToDoData.getInstance().loadTodoItems();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
