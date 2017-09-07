@@ -1,6 +1,7 @@
 package com.eligosoftware.todolist.dataModel;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,7 +17,7 @@ import java.util.List;
 public class ToDoData {
     private static ToDoData instance=new ToDoData();
     private static String filename="ToDoListItems.txt";
-    private List<TodoItem> todoItems;
+    private ObservableList<TodoItem> todoItems;
     private DateTimeFormatter formatter;
 
     public static ToDoData getInstance(){
@@ -27,7 +28,7 @@ public class ToDoData {
         formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
-    public List<TodoItem> getTodoItems() {
+    public ObservableList<TodoItem> getTodoItems() {
         return todoItems;
     }
 
@@ -86,5 +87,9 @@ public class ToDoData {
 
     public void addTodoItem(TodoItem item){
         todoItems.add(item);
+    }
+
+    public void deleteTodoItem(TodoItem item) {
+        todoItems.remove(item);
     }
 }
